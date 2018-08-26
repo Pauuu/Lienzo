@@ -11,14 +11,15 @@ import javax.swing.*;
  */
 public class Ventana extends JFrame implements KeyListener {
 
+    JButton boton;
     JPanel mainPanel;
     Lienzo lien;
 
     public Ventana() {
         super("Lienzo");
 
-        this.setFocusable(true);
-        this.requestFocus();
+        this.setFocusable(true); //sin esto, no tira
+        //this.requestFocus();
 
         //Añade el escuchador a la ventana
         this.addKeyListener(this);
@@ -42,12 +43,9 @@ public class Ventana extends JFrame implements KeyListener {
         //crea un JPanel con layout GridGagLayout
         this.mainPanel = new JPanel(new GridBagLayout());
 
-        //this.lien = new Lienzo(Color.red, 70, 80, this);
-        JButton boton1 = new JButton("Hola :1");
-        JButton boton2 = new JButton("Hola :2");
-        JButton boton3 = new JButton("Hola :3");
-        
-        cp.add(boton1);
+        this.lien = new Lienzo(Color.red, 70, 80, this);
+
+        cp.add(lien);
 
     }
 
@@ -65,6 +63,17 @@ public class Ventana extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_UP) {
+            this.lien.requestFocus();
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+            this.requestFocus();
+        }
+
         System.out.println(".");
+
     }
 }
