@@ -11,28 +11,24 @@ import javax.swing.*;
  */
 public class Ventana extends JFrame implements KeyListener {
 
-    Lienzo bola;
+    JPanel mainPanel;
+    Lienzo lien;
 
     public Ventana() {
         super("Lienzo");
-        
-        System.out.println(this.isFocusable());
-                
 
-        this.setSize(200, 200);
+        this.setFocusable(true);
+        this.requestFocus();
 
         //Añade el escuchador a la ventana
         this.addKeyListener(this);
-
-        //muestra la ventana
+        //muestra la ventana en condiciones
         this.mostrarVentana();
 
-    }
-
-    public void crearBola(Container cp) {
-
-        this.bola = new Lienzo(this, 140, 90, Color.black);
-        cp.add(bola);
+        //crea la bola
+        //this.lien = new Lienzo(Color.red, 70, 80, this);
+        //añade la bola en el panel
+        //this.mainPanel.add(lien);
     }
 
     public void mostrarVentana() {
@@ -40,10 +36,19 @@ public class Ventana extends JFrame implements KeyListener {
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //recoge el contenedor de la ventana y lo almacena en la variable "cp"
         Container cp = this.getContentPane();
 
-        //Crea (es la intencion) una bola negra y la muestra por la ventana
-        this.crearBola(cp);
+        //crea un JPanel con layout GridGagLayout
+        this.mainPanel = new JPanel(new GridBagLayout());
+
+        //this.lien = new Lienzo(Color.red, 70, 80, this);
+        JButton boton1 = new JButton("Hola :1");
+        JButton boton2 = new JButton("Hola :2");
+        JButton boton3 = new JButton("Hola :3");
+        
+        cp.add(boton1);
+
     }
 
     @Override
@@ -60,11 +65,6 @@ public class Ventana extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
-        if (e.getKeyCode() == 44) {
-            System.out.println("44 es una coma simple");
-
-        } else {
-            System.out.println(".");
-        }
-    } 
+        System.out.println(".");
+    }
 }
