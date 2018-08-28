@@ -5,10 +5,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.*;
 
-/**
- *
- * @author pau
- */
 public class Ventana extends JFrame implements KeyListener, Runnable {
 
     JButton boton;
@@ -19,14 +15,11 @@ public class Ventana extends JFrame implements KeyListener, Runnable {
         super("Lienzo");
 
         this.setFocusable(true); //sin esto, no tira
-        //this.requestFocus();
-
+        
         //Añade el escuchador a la ventana
         this.addKeyListener(this);
         //muestra la ventana en condiciones
         this.mostrarVentana();
-
-        
     }
 
     public void mostrarVentana() {
@@ -37,14 +30,13 @@ public class Ventana extends JFrame implements KeyListener, Runnable {
         //recoge el contenedor de la ventana y lo almacena en la variable "cp"
         Container cp = this.getContentPane();
 
-        //crea un JPanel con layout GridGagLayout
+        //crea un JPanel con layout GridGagLayout en "mainPanel"
         this.mainPanel = new JPanel(new GridBagLayout());
 
+        //"lien" es el objeto lienzo
         this.lien = new Lienzo(Color.red, 70, 80, this);
-        //this.pack(); //adapta el tamaño del marco al del component(?)
 
         cp.add(lien);
-
     }
 
     @Override
