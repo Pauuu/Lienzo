@@ -9,7 +9,7 @@ import javax.swing.*;
  *
  * @author pau
  */
-public class Ventana extends JFrame implements KeyListener {
+public class Ventana extends JFrame implements KeyListener, Runnable {
 
     JButton boton;
     JPanel mainPanel;
@@ -26,10 +26,7 @@ public class Ventana extends JFrame implements KeyListener {
         //muestra la ventana en condiciones
         this.mostrarVentana();
 
-        //crea la bola
-        //this.lien = new Lienzo(Color.red, 70, 80, this);
-        //añade la bola en el panel
-        //this.mainPanel.add(lien);
+        
     }
 
     public void mostrarVentana() {
@@ -44,6 +41,7 @@ public class Ventana extends JFrame implements KeyListener {
         this.mainPanel = new JPanel(new GridBagLayout());
 
         this.lien = new Lienzo(Color.red, 70, 80, this);
+        //this.pack(); //adapta el tamaño del marco al del component(?)
 
         cp.add(lien);
 
@@ -75,5 +73,10 @@ public class Ventana extends JFrame implements KeyListener {
 
         System.out.println(".");
 
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
