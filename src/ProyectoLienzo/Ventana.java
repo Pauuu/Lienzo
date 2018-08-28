@@ -41,7 +41,7 @@ public class Ventana extends JFrame implements KeyListener, Runnable {
         this.mainPanel = new JPanel(new GridBagLayout());
 
         this.lien = new Lienzo(Color.red, 70, 80, this);
-        this.pack(); //adapta el tamaño del marco al del component(?)
+        //this.pack(); //adapta el tamaño del marco al del component(?)
 
         cp.add(lien);
 
