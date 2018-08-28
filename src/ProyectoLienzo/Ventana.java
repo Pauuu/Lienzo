@@ -9,17 +9,27 @@ public class Ventana extends JFrame implements KeyListener, Runnable {
 
     JButton boton;
     JPanel mainPanel;
+    Thread animator;
     Lienzo lien;
 
     public Ventana() {
         super("Lienzo");
 
-        this.setFocusable(true); //sin esto, no tira
-        
+        this.setFocusable(true); //sin esto, no tira el escuchador de eventos
+
         //Añade el escuchador a la ventana
         this.addKeyListener(this);
+
         //muestra la ventana en condiciones
         this.mostrarVentana();
+
+        //arranca el hilo una vez mostrada la ventana
+        this.empezarAnimacion();
+    }
+
+    public void empezarAnimacion() {
+        this.animator = new Thread(this);
+        this.animator.start();
     }
 
     public void mostrarVentana() {
@@ -69,6 +79,22 @@ public class Ventana extends JFrame implements KeyListener, Runnable {
 
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        int num = 0;
+
+        while (true) {
+            System.out.println("test: " + num);
+            num++;
+
+            
+            
+            try {
+                this.lien.posX++;
+                Thread.sleep(20);
+                this.lien.repaint();
+                
+            } catch (InterruptedException ex) {
+            }
+        }
     }
 }
